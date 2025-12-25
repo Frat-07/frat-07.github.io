@@ -1,91 +1,208 @@
+<script>
+  const els = document.querySelectorAll('.block, .hero, .panel, .term, .terminal, .card');
+  els.forEach(e => e.classList.add('reveal'));
+
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(en=>{
+      if(en.isIntersecting) en.target.classList.add('show');
+    });
+  },{threshold:0.12});
+
+  els.forEach(e=>io.observe(e));
+</script>
+
 <!doctype html>
 <html lang="tr">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Işıltı</title>
+  <title>EĞİTMEN | Işıltı</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
 
-  <!-- ÜST MENÜ -->
-  <header class="top">
+<body>
+  <!-- Arka plan katmanları -->
+  <div class="bgGlow"></div>
+  <div class="scan"></div>
+  <canvas id="matrix"></canvas>
+
+  <!-- Üst terminal menü -->
+  <header class="topbar">
     <div class="brand">
-      <span class="dot"></span>
+      <span class="led"></span>
       <span class="prompt">&gt;_</span>
-      <span class="name">Işıltı</span>
+      <span class="title">EĞİTMEN</span>
     </div>
 
     <nav class="nav">
-      <a href="#home">Giriş</a>
-      <a href="#courses">Kurslar</a>
-      <a href="Eğitmen">Eğitmen</a>
-      <a href="#Bug Bounty">BugBounty</a>
+      <a href="#home">home</a>
+      <a href="#courses">courses</a>
+      <a href="#contact">contact</a>
+      <a href="#services">hizmetlerim</a>
+      <a href="#whoami">whoami</a>
+      <a class="chip" href="#social">social</a>
     </nav>
   </header>
 
-  <!-- ORTA ALAN -->
+  <!-- Orta içerik -->
   <main class="wrap" id="home">
+    <section class="panel">
+      <h1 class="heroTitle">
+        Siber Güvenlik Uzmanı & Eğitmen <span class="cursor">█</span>
+      </h1>
 
-    <!-- ANA KUTU -->
-    <section class="hero">
-     <img src="img/profil.png" class="profile">
-      <h1>Siber Güvenlik Uzmanı & Eğitmen</h1>
-      <p class="sub">Merhaba Benim adım Fırat Burada eğitimlerimi ve iletişim bilgilerimi paylaşıyorum.</p>
+      <p class="heroDesc">
+        Etik hacking, sızma testleri, ağ güvenliği, tersine mühendislik ve Red Team pratikleri.
+        Laboratuvar odaklı, gerçek dünyaya dönük eğitimler.
+      </p>
 
-      <div class="btns">
-<div class="social">
-  <a class="sbtn" href="https://instagram.com/_frat.70" target="_blank">
-    <img src="img/instagram.png" alt=""> Instagram
-  </a>
-
-  <a class="sbtn" href="https://wa.me/905XXXXXXXXX" target="_blank">
-    <img src="img/whatsapp.png" alt=""> WhatsApp
-  </a>
-
-  <a class="sbtn" href="https://t.me/@Frat3434" target="_blank">
-    <img src="img/telegram.png" alt=""> Telegram
-  </a>
-</div>
-        <a class="btn primary" href="#courses">Eğitimleri Gör</a>
+      <div class="cta">
+        <a class="btn primary" href="#courses">↗ Eğitimleri Gör</a>
         <a class="btn ghost" href="#contact">İletişim</a>
       </div>
 
-      <!-- TERMİNAL KUTUSU -->
       <div class="terminal">
-        <div class="term-top">
-          <span class="c red"></span><span class="c yellow"></span><span class="c green"></span>
+        <div class="termTop">
+          <span class="dot red"></span>
+          <span class="dot yellow"></span>
+          <span class="dot green"></span>
         </div>
-        <pre><code>guest@isilti:~$ whoami
-isilti
-
-guest@isilti:~$ echo "merhaba"
-merhaba</code></pre>
+        <pre id="term" class="termBody"></pre>
       </div>
     </section>
 
-    <!-- BÖLÜMLER -->
-    <section class="section" id="courses">
+    <section class="block" id="courses">
+<section class="block" id="duyuru">
+  <h2>&gt; Duyurular / Notlar</h2>
+
+  <div class="noticeGrid">
+    <div class="notice">
+      <div class="noticeTag">DUYURU</div>
+      <h3>Yeni içerik yayında</h3>
+      <p> Bu Sitede Siber Güvenlikle ilgili Notlar Paylaşacağım :)</p>
+      <span class="noticeDate">01.01.2026</span>
+    </div>
+
+    <div class="notice">
+      <div class="noticeTag">NOT</div>
+      <h3>Günlük not</h3>
+      <p>Buraya kısa not/özet yazacağım. (Her Hafta güncelleme Yapacağım)</p>
+      <span class="noticeDate">01.OCAK 2026</span>
+    </div>
+  </div>
+
+  <div class="igBox" id="instagram">
+    <h3>Instagram</h3>
+    <p>Notlarımı ve duyurularımı Instagram’dan da paylaşıyor olacağım.</p>
+    <a class="btn primary" href="https://instagram.com/frat.70" target="_blank" rel="noopener">
+      ↗ Instagram’a Git
+    </a>
+  </div>
+</section>
       <h2>&gt; Eğitimler</h2>
-      <p>Buraya eğitim listesi yazılacak.</p>
+      <p>burası eğitim amaçlı kullanacağım sitedir.</p>
     </section>
 
-    <section class="section" id="contact">
-      <h2>&gt; İletişim</h2>
-      <p>Instagram:_frat.70  |  Mail: xxxxx@gmail.com</p>
+    <section class="block" id="social">
+      <h2>&gt; Social</h2>
+      <p>Instagram / WhatsApp / Telegram linklerini buraya koyacağız.</p>
     </section>
 
-    <section class="section" id="whoami">
+    <section class="block" id="services">
+      <h2>&gt; Hizmetlerim</h2>
+      <p>Danışmanlık, eğitim, güvenlik analizleri vb.</p>
+    </section>
+
+    <section class="block" id="whoami">
       <h2>&gt; whoami</h2>
-      <p>Işıltı — etik hacking ve siber güvenlik alanında içerikler.</p>
+      <p>Ben Fırat. Burada eğitimlerimi ve iletişim bilgilerimi paylaşıyorum.</p>
     </section>
 
+    <section class="block" id="contact">
+      <h2>&gt; İletişim</h2>
+      <p>E-posta / sosyal medya bağlantıları burada.</p>
+    </section>
   </main>
 
-  <!-- ALT -->
-  <footer class="foot">
-    <small>© 2025 Işıltı</small>
-  </footer>
+  <script>
+    // Terminal yazı yazma efekti (görsel amaçlı)
+    const lines = [
+      "guest@xpert:~$ whoami",
+      "EĞİTMEN / Fırat",
+      "",
+      "guest@xpert:~$ initializing...",
+      "✔ Wifi-Eğitimleri",
+      "✔ Bug Bunty Eğitimi",
+      "✔ Kali Linux Öğrenme",
+      "",
+      "guest@xpert:~$ echo \"welcome\" | base64",
+      "d2VsY29tZQ==",
+      "",
+      "guest@xpert:~$"
+    ];
 
+    const el = document.getElementById("term");
+    let i = 0, j = 0;
+
+    function type() {
+      if (i >= lines.length) return;
+      const line = lines[i];
+      if (j < line.length) {
+        el.textContent += line[j++];
+        setTimeout(type, 18);
+      } else {
+        el.textContent += "\n";
+        i++; j = 0;
+        setTimeout(type, 140);
+      }
+    }
+    window.addEventListener("load", type);
+
+    // Hafif matrix (göz yormayan)
+    const c = document.getElementById("matrix");
+    const ctx = c.getContext("2d");
+    const letters = "01<>/\\{}[]$#@*+-=HACK";
+    const fontSize = 14;
+    let drops = [];
+
+    function resize() {
+      c.width = window.innerWidth;
+      c.height = window.innerHeight;
+      const cols = Math.floor(c.width / fontSize);
+      drops = new Array(cols).fill(1);
+    }
+    window.addEventListener("resize", resize);
+    resize();
+
+    function draw() {
+      ctx.fillStyle = "rgba(0,0,0,0.10)";
+      ctx.fillRect(0, 0, c.width, c.height);
+
+      ctx.font = fontSize + "px monospace";
+      for (let x = 0; x < drops.length; x++) {
+        const ch = letters[Math.floor(Math.random() * letters.length)];
+        ctx.fillStyle = "rgba(57,255,20,0.22)";
+        ctx.fillText(ch, x * fontSize, drops[x] * fontSize);
+
+        if (drops[x] * fontSize > c.height && Math.random() > 0.985) drops[x] = 0;
+        drops[x]++;
+      }
+      requestAnimationFrame(draw);
+    }
+    draw();
+  </script>
 </body>
 </html>
+
+<script>
+  const els = document.querySelectorAll('.block, .hero, .panel, .term, .terminal, .card');
+  els.forEach(e => e.classList.add('reveal'));
+
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(en=>{
+      if(en.isIntersecting) en.target.classList.add('show');
+    });
+  },{threshold:0.12});
+
+  els.forEach(e=>io.observe(e));
+</script>
